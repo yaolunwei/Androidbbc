@@ -1,8 +1,6 @@
 ## BBC(基础业务组件)
 > 业务组件的基础，所有业务组件必须基于该组件进行开发，提供一站式开发
 
-![jetpack.png](../assets/jetpack.png)
-
 ### 快速使用
 2. gradle:
 ```groovy
