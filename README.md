@@ -4,7 +4,7 @@
 ### 快速使用
 2. gradle:
 ```groovy
-implementation 'cc.lecent.bbc:1.0.0'
+implementation 'com.bigoat.android:bbc:0.0.1'
 ```
 
 ### 约定成俗
