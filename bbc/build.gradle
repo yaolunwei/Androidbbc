@@ -57,9 +57,9 @@ dependencies {
 
 publish {
     userOrg = 'bigoat'
-    groupId = 'com.bigoat'
-    artifactId = 'base'
+    groupId = 'com.bigoat.android'
+    artifactId = 'bbc'
     publishVersion = '0.0.1'
-    desc = 'This is android base'
+    desc = 'This is android mvvm arch.'
     website = 'https://github.com/yaolunwei/Androidbbc'
 }
