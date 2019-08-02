@@ -111,14 +111,7 @@ public final class NetworkUtils {
             ip = "223.5.5.5";// default ping ip
         }
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format("ping -c 1 %s", ip), false);
-        boolean ret = result.result == 0;
-        if (result.errorMsg != null) {
-            Log.d("NetworkUtils", "isAvailableByPing() called" + result.errorMsg);
-        }
-        if (result.successMsg != null) {
-            Log.d("NetworkUtils", "isAvailableByPing() called" + result.successMsg);
-        }
-        return ret;
+        return result.result == 0;
     }
 
     /**
@@ -496,14 +489,13 @@ public final class NetworkUtils {
     /**
      * 获取WIFI MAC地址
      *
-     * @param context context
      * @return mac 地址
      */
     @SuppressLint("HardwareIds")
     @RequiresPermission(ACCESS_WIFI_STATE)
-    public String getMacByWifi(Context context){
+    public String getMacByWifi(){
         @SuppressLint("WifiManagerPotentialLeak")
-        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifi = (WifiManager) Utils.getApp().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifi.getConnectionInfo();
         return info.getMacAddress()== null ? "" : info.getMacAddress();
     }
@@ -511,11 +503,10 @@ public final class NetworkUtils {
     /**
      * 返回以太网是否使能
      *
-     * @param context context
      * @return 是否使能
      */
-    public static boolean getEthernetEnabled(Context context) {
-        ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static boolean getEthernetEnabled() {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mInternetNetWorkInfo = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_ETHERNET);
         if (mInternetNetWorkInfo != null && mInternetNetWorkInfo.isConnected() && mInternetNetWorkInfo.isAvailable()) {
             return true;
@@ -674,8 +665,8 @@ public final class NetworkUtils {
     }
 
     @RequiresPermission(ACCESS_WIFI_STATE)
-    public static String getGateway(Context context) {
-        if (getEthernetEnabled(context)) {
+    public static String getGateway() {
+        if (getEthernetEnabled()) {
             return getGatewayByEthernet();
         } else {
             return getGatewayByWifi();
