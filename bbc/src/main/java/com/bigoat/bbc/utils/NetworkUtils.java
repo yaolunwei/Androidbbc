@@ -673,4 +673,25 @@ public final class NetworkUtils {
         }
     }
 
+    public static String getMaskByEthernet(String name) {
+        Process cmdProcess = null;
+        BufferedReader reader = null;
+        String dnsIP = "";
+        try {
+            cmdProcess = Runtime.getRuntime().exec("getprop dhcp." + name + ".mask");
+            reader = new BufferedReader(new InputStreamReader(cmdProcess.getInputStream()));
+            dnsIP = reader.readLine();
+            return dnsIP;
+        } catch (IOException e) {
+            return null;
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+            }
+            cmdProcess.destroy();
+        }
+    }
+
+
 }
