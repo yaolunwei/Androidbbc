@@ -2,6 +2,8 @@ package com.bigoat.bbc.base;
 
 import android.app.Application;
 
+import com.bigoat.bbc.utils.SPUtils;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -37,7 +39,15 @@ public abstract class BaseApplication extends Application {
         super.onCreate();
 
         sInstance = this;
+
         myCreate();
+
+        boolean firstRun = SPUtils.getInstance().getBoolean("firstRun", true);
+        if (firstRun) {
+            SPUtils.getInstance().put("firstRun", false);
+            myFirstRun();
+        }
+
     }
 
     /**
@@ -46,21 +56,22 @@ public abstract class BaseApplication extends Application {
     public abstract void myCreate();
 
     /**
+     * 首次运行
+     */
+    public void myFirstRun() {}
+
+    /**
      * 存储全局数据
      *
      * @param key key
      * @param value value
      */
     public void putData(String key, Object value) {
-        if (key == null) {
+        if (key == null || value == null) {
             return;
         }
 
-        if (value == null) {
-            mData.remove(key);
-        } else {
-            mData.put(key, value);
-        }
+        mData.put(key, value);
     }
 
     /**
