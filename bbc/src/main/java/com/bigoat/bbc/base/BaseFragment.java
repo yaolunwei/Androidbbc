@@ -151,17 +151,17 @@ public abstract class BaseFragment<Binding extends ViewDataBinding, ViewMode ext
         vm.onDestroy();
     }
 
-    protected BaseFragment with(@NonNull String key, @NonNull Object value) {
+    public BaseFragment with(@NonNull String key, @NonNull Object value) {
         act.with(key, value);
         return this;
     }
 
-    protected BaseFragment startActivity(Class activity) {
+    public BaseFragment startActivity(Class activity) {
         act.intent = new Intent(act, activity);
         return this;
     }
 
-    protected void go() {
+    public void go() {
         act.go();
     }
 

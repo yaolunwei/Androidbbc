@@ -41,7 +41,7 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewMode ext
     private View progressView;
 
     protected Intent intent;
-    protected Bundle bundle = new Bundle();
+    private Bundle bundle = new Bundle();
 
     /**
      * 布局文件
@@ -139,7 +139,7 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewMode ext
         vm.onDestroy();
     }
 
-    protected BaseActivity with(@NonNull String key, @NonNull Object value) {
+    public BaseActivity with(@NonNull String key, @NonNull Object value) {
         if (value instanceof String) {
             bundle.putString(key, (String) value);
         } else if (value instanceof Boolean) {
@@ -157,12 +157,12 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewMode ext
         return this;
     }
 
-    protected BaseActivity startActivity(Class activity) {
+    public BaseActivity startActivity(Class activity) {
         intent = new Intent(this, activity);
         return this;
     }
 
-    protected void go() {
+    public void go() {
         if (intent == null) {
             throw new RuntimeException("请先设置跳转Activity eg：startActivity(Class activity)");
         }

@@ -144,17 +144,17 @@ public abstract class BaseDialog<Binding extends ViewDataBinding, ViewMode exten
         vm.onDestroy();
     }
 
-    protected BaseDialog with(@NonNull String key, @NonNull Object value) {
+    public BaseDialog with(@NonNull String key, @NonNull Object value) {
         act.with(key, value);
         return this;
     }
 
-    protected BaseDialog startActivity(Class activity) {
+    public BaseDialog startActivity(Class activity) {
         act.intent = new Intent(act, activity);
         return this;
     }
 
-    protected void go() {
+    public void go() {
         act.go();
     }
 
