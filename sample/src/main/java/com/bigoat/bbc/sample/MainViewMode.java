@@ -1,6 +1,6 @@
 package com.bigoat.bbc.sample;
 
-import com.bigoat.bbc.base.BaseViewModel;
+import com.bigoat.bbc.sample.my.MyViewModel;
 
 /**
  * <pre>
@@ -10,7 +10,7 @@ import com.bigoat.bbc.base.BaseViewModel;
  *     desc   :
  * </pre>
  */
-public class MainViewMode extends BaseViewModel {
+public class MainViewMode extends MyViewModel {
 
     @Override
     public void onCreate() {

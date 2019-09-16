@@ -3,6 +3,7 @@ package com.bigoat.bbc.base;
 import android.app.Application;
 
 import com.bigoat.bbc.utils.SPUtils;
+import com.bigoat.bbc.utils.Utils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -39,6 +40,8 @@ public abstract class BaseApplication extends Application {
         super.onCreate();
 
         sInstance = this;
+
+        Utils.init(this);
 
         myCreate();
 

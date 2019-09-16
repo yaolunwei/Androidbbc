@@ -19,11 +19,11 @@ import com.bigoat.bbc.utils.LogUtils;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public abstract class BaseDialog<Binding extends ViewDataBinding, ViewMode extends BaseViewModel> extends DialogFragment {
+public abstract class BaseDialog<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends DialogFragment {
     protected String tag;
 
     protected Binding bind;
-    protected ViewMode vm;
+    protected ViewModel vm;
 
     private BaseActivity act;
 
@@ -38,27 +38,27 @@ public abstract class BaseDialog<Binding extends ViewDataBinding, ViewMode exten
      * 业务逻辑
      *
      * @param bind Binding
-     * @param vm ViewMode
+     * @param vm ViewModel
      */
-    protected abstract void myCreate(Binding bind, ViewMode vm);
+    protected abstract void myCreate(Binding bind, ViewModel vm);
 
     /**
      * 创建ViewMode
      *
-     * @return ViewMode
+     * @return ViewModel
      */
-    private ViewMode createModel() {
+    private ViewModel createModel() {
         Type type = getClass().getGenericSuperclass();
 
         if (type instanceof ParameterizedType) {
             ParameterizedType paraType = (ParameterizedType) type;
 
             if (paraType.getActualTypeArguments().length == 2) {
-                Class clazz = (Class<ViewMode>) paraType.getActualTypeArguments()[1];
+                Class clazz = (Class<ViewModel>) paraType.getActualTypeArguments()[1];
                 if (shareViewMode()) {
-                    return (ViewMode) ViewModelProviders.of(getActivity()).get(clazz);
+                    return (ViewModel) ViewModelProviders.of(getActivity()).get(clazz);
                 } else {
-                    return (ViewMode) ViewModelProviders.of(this).get(clazz);
+                    return (ViewModel) ViewModelProviders.of(this).get(clazz);
                 }
             } else {
                 throw new RuntimeException("请配置正确的泛型参数, eg: MyDialog extends BaseDialog<?, ?>");
@@ -66,9 +66,9 @@ public abstract class BaseDialog<Binding extends ViewDataBinding, ViewMode exten
 
         } else {
             if (shareViewMode()) {
-                return (ViewMode) ViewModelProviders.of(getActivity()).get(BaseViewModel.class);
+                return (ViewModel) ViewModelProviders.of(getActivity()).get(BaseViewModel.class);
             } else {
-                return (ViewMode) ViewModelProviders.of(this).get(BaseViewModel.class);
+                return (ViewModel) ViewModelProviders.of(this).get(BaseViewModel.class);
             }
         }
     }

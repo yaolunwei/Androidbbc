@@ -32,11 +32,11 @@ import static com.bigoat.bbc.utils.GsonUtils.toJson;
  *     desc   : Activity基础
  * </pre>
  */
-public abstract class BaseActivity<Binding extends ViewDataBinding, ViewMode extends BaseViewModel> extends AppCompatActivity {
+public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends AppCompatActivity {
     protected String tag;
 
     protected Binding bind;
-    protected ViewMode vm;
+    protected ViewModel vm;
 
     private View progressView;
 
@@ -54,31 +54,31 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewMode ext
      * 业务逻辑
      *
      * @param bind Binding
-     * @param vm ViewMode
+     * @param vm ViewModel
      */
-    protected abstract void myCreate(@NonNull Binding bind, @NonNull ViewMode vm);
+    protected abstract void myCreate(@NonNull Binding bind, @NonNull ViewModel vm);
 
     /**
      * 创建ViewMode
      *
-     * @return ViewMode
+     * @return ViewModel
      */
-    private ViewMode createViewModel() {
+    private ViewModel createViewModel() {
         Type type = getClass().getGenericSuperclass();
 
         if (type instanceof ParameterizedType) {
             ParameterizedType paraType = (ParameterizedType) type;
 
             if (paraType.getActualTypeArguments().length == 2) {
-                Class clazz = (Class<ViewMode>) paraType.getActualTypeArguments()[1];
-                return (ViewMode) ViewModelProviders.of(this).get(clazz);
+                Class clazz = (Class<ViewModel>) paraType.getActualTypeArguments()[1];
+                return (ViewModel) ViewModelProviders.of(this).get(clazz);
             } else {
                 throw new RuntimeException("请配置正确的泛型参数, eg: MyActivity extends BaseActivity<?, ?>");
             }
 
         } else {
             BaseViewModel baseViewModel = ViewModelProviders.of(this).get(BaseViewModel.class);
-            return (ViewMode)baseViewModel;
+            return (ViewModel)baseViewModel;
         }
     }
 

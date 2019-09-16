@@ -30,6 +30,7 @@ android {
 }
 
 dependencies {
+    // 最上面放系统依赖
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
@@ -37,5 +38,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    // 中间放核心依赖,例如框架
     implementation project(path: ':bbc')
+
+    // 最后放第三方依赖，必须附带说明
+    implementation 'cn.lecent.lib:tts:1.2'
 }

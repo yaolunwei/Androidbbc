@@ -26,11 +26,11 @@ import java.lang.reflect.Type;
  *     desc   : Fragment基础
  * </pre>
  */
-public abstract class BaseFragment<Binding extends ViewDataBinding, ViewMode extends BaseViewModel> extends Fragment {
+public abstract class BaseFragment<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends Fragment {
     protected String tag;
 
     protected Binding bind;
-    protected ViewMode vm;
+    protected ViewModel vm;
 
     private BaseActivity act;
 
@@ -45,27 +45,27 @@ public abstract class BaseFragment<Binding extends ViewDataBinding, ViewMode ext
      * 业务逻辑
      *
      * @param bind Binding
-     * @param vm ViewMode
+     * @param vm ViewModel
      */
-    protected abstract void myCreate(Binding bind, ViewMode vm);
+    protected abstract void myCreate(Binding bind, ViewModel vm);
 
     /**
      * 创建ViewMode
      *
-     * @return ViewMode
+     * @return ViewModel
      */
-    private ViewMode createModel() {
+    private ViewModel createModel() {
         Type type = getClass().getGenericSuperclass();
 
         if (type instanceof ParameterizedType) {
             ParameterizedType paraType = (ParameterizedType) type;
 
             if (paraType.getActualTypeArguments().length == 2) {
-                Class clazz = (Class<ViewMode>) paraType.getActualTypeArguments()[1];
+                Class clazz = (Class<ViewModel>) paraType.getActualTypeArguments()[1];
                 if (shareViewMode()) {
-                    return (ViewMode) ViewModelProviders.of(getActivity()).get(clazz);
+                    return (ViewModel) ViewModelProviders.of(getActivity()).get(clazz);
                 } else {
-                    return (ViewMode) ViewModelProviders.of(this).get(clazz);
+                    return (ViewModel) ViewModelProviders.of(this).get(clazz);
                 }
             } else {
                 throw new RuntimeException("请配置正确的泛型参数, eg: MyFragment extends BaseFragment<?, ?>");
@@ -73,9 +73,9 @@ public abstract class BaseFragment<Binding extends ViewDataBinding, ViewMode ext
 
         } else {
             if (shareViewMode()) {
-                return (ViewMode) ViewModelProviders.of(getActivity()).get(BaseViewModel.class);
+                return (ViewModel) ViewModelProviders.of(getActivity()).get(BaseViewModel.class);
             } else {
-                return (ViewMode) ViewModelProviders.of(this).get(BaseViewModel.class);
+                return (ViewModel) ViewModelProviders.of(this).get(BaseViewModel.class);
             }
         }
     }

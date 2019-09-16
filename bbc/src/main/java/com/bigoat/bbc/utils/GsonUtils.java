@@ -3,6 +3,7 @@ package com.bigoat.bbc.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 
 import java.io.Reader;
 import java.lang.reflect.Type;
@@ -101,6 +102,17 @@ public final class GsonUtils {
     }
 
     /**
+     * Converts {@link JsonReader} to given type.
+     *
+     * @param reader the reader to convert.
+     * @param type   type type json will be converted to.
+     * @return instance of type
+     */
+    public static <T> T fromJson(final JsonReader reader, final Class<T> type) {
+        return GSON.fromJson(reader, type);
+    }
+
+    /**
      * Converts {@link Reader} to given type.
      *
      * @param reader the reader to convert.
@@ -108,6 +120,17 @@ public final class GsonUtils {
      * @return instance of type
      */
     public static <T> T fromJson(final Reader reader, final Type type) {
+        return GSON.fromJson(reader, type);
+    }
+
+    /**
+     * Converts {@link JsonReader} to given type.
+     *
+     * @param reader the reader to convert.
+     * @param type   type type json will be converted to.
+     * @return instance of type
+     */
+    public static <T> T fromJson(final JsonReader reader, final Type type) {
         return GSON.fromJson(reader, type);
     }
 
