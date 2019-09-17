@@ -57,7 +57,7 @@ publish {
     userOrg = 'bigoat'
     groupId = 'com.bigoat.android'
     artifactId = 'bbc'
-    publishVersion = '0.0.8'
+    publishVersion = '0.0.9'
     desc = 'This is android mvvm arch.'
     website = 'https://github.com/yaolunwei/Androidbbc'
-}
+release_version_0_0_9}
