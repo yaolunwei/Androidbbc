@@ -56,6 +56,7 @@ public class MainActivity extends MyActivity<MainActivityBinding, MainViewMode> 
             }
         });
 
+
     }
 
 }

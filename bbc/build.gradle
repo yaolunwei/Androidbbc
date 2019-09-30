@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 9
         versionName "0.0.9"
 
@@ -60,4 +60,4 @@ publish {
     publishVersion = '0.0.9'
     desc = 'This is android mvvm arch.'
     website = 'https://github.com/yaolunwei/Androidbbc'
-release_version_0_0_9}
+}

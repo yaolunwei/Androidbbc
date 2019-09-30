@@ -70,11 +70,15 @@ public abstract class BaseApplication extends Application {
      * @param value value
      */
     public void putData(String key, Object value) {
-        if (key == null || value == null) {
+        if (key == null) {
             return;
         }
 
-        mData.put(key, value);
+        if (value == null) {
+            mData.remove(key);
+        } else {
+            mData.put(key, value);
+        }
     }
 
     /**

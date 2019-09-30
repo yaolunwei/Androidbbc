@@ -207,6 +207,10 @@ public final class RegexUtils {
         return isMatch(RegexConstants.REGEX_IP, input);
     }
 
+    public static boolean isDomain(final CharSequence input) {
+        return isMatch(RegexConstants.REGEX_DOMAIN, input);
+    }
+
     public static boolean isPort(final CharSequence input) {
         return isMatch(RegexConstants.REGEX_PORT, input);
     }
