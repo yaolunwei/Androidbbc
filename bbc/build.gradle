@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 9
-        versionName "0.0.9"
+        versionCode 10
+        versionName "0.1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -57,7 +57,7 @@ publish {
     userOrg = 'bigoat'
     groupId = 'com.bigoat.android'
     artifactId = 'bbc'
-    publishVersion = '0.0.9'
+    publishVersion = '0.1.0'
     desc = 'This is android mvvm arch.'
     website = 'https://github.com/yaolunwei/Androidbbc'
 }
