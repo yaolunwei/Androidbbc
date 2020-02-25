@@ -1,7 +1,7 @@
 package com.bigoat.bbc.sample.permission;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bigoat.bbc.sample.R;
 import com.bigoat.bbc.sample.databinding.PermissionActivityBinding;

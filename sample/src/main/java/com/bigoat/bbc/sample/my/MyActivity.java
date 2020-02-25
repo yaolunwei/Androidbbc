@@ -1,10 +1,9 @@
 package com.bigoat.bbc.sample.my;
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.text.TextUtils;
 
 import com.bigoat.bbc.base.BaseActivity;
-import com.bigoat.bbc.base.BaseApplication;
 import com.bigoat.bbc.utils.ScreenUtils;
 
 import cn.lecent.lib.tts.TTS;

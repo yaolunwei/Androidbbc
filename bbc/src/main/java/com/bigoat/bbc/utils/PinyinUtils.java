@@ -1,6 +1,6 @@
 package com.bigoat.bbc.utils;
 
-import android.support.v4.util.SimpleArrayMap;
+import androidx.collection.SimpleArrayMap;
 
 /**
  * <pre>

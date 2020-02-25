@@ -1,6 +1,6 @@
 package com.bigoat.bbc.base;
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 
 /**
  * <pre>

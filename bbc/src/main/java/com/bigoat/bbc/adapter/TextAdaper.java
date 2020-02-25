@@ -1,6 +1,6 @@
 package com.bigoat.bbc.adapter;
 
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
