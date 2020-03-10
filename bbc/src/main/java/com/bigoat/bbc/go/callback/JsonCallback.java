@@ -15,13 +15,12 @@
  */
 package com.bigoat.bbc.go.callback;
 
-import com.bigoat.bbc.utils.GsonUtils;
-import com.google.gson.JsonIOException;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonToken;
+import android.util.JsonToken;
 
-import org.json.JSONTokener;
+import com.bigoat.bbc.go.exception.JsonIOException;
+import com.blankj.utilcode.util.GsonUtils;
 
+import java.io.Reader;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -42,16 +41,12 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
     @Override
     public T convertResponse(Response response) throws Throwable {
         ResponseBody body = response.body();
-        JsonReader jsonReader = new JsonReader(body.charStream());
+        Reader reader = body.charStream();
 
         try {
             Type genType = getClass().getGenericSuperclass();
             Type type = ((ParameterizedType) genType).getActualTypeArguments()[0];
-            T result = GsonUtils.fromJson(jsonReader, type);
-            if (jsonReader.peek() != JsonToken.END_DOCUMENT) {
-                throw new JsonIOException("JSON document was not fully consumed.");
-            }
-            return result;
+            return GsonUtils.fromJson(reader, type);
         } finally {
             body.close();
         }

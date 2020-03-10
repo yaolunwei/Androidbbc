@@ -7,7 +7,7 @@ import com.bigoat.bbc.sample.R;
 import com.bigoat.bbc.sample.databinding.PermissionActivityBinding;
 import com.bigoat.bbc.sample.my.MyActivity;
 import com.bigoat.bbc.sample.my.MyViewModel;
-import com.bigoat.bbc.utils.PermissionUtils;
+import com.blankj.utilcode.util.PermissionUtils;
 
 /**
  * <pre>

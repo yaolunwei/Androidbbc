@@ -14,8 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bigoat.bbc.utils.GsonUtils;
-import com.bigoat.bbc.utils.LogUtils;
+
+import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.LogUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -98,7 +99,7 @@ public abstract class BaseDialog<Binding extends ViewDataBinding, ViewModel exte
 
         bind.setLifecycleOwner(this);
 
-        vm.progressData.observe(this, s -> {
+        vm.progressData.observe(getViewLifecycleOwner(), s -> {
             if (s == null) {
                 hideProgress();
             } else {

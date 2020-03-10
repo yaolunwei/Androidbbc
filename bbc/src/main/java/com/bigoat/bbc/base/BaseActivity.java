@@ -15,14 +15,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigoat.bbc.R;
-import com.bigoat.bbc.utils.GsonUtils;
-import com.bigoat.bbc.utils.LogUtils;
+import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.LogUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import static com.bigoat.bbc.utils.GsonUtils.toJson;
+import static com.blankj.utilcode.util.GsonUtils.toJson;
+
 
 /**
  * <pre>
@@ -207,7 +208,7 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
     }
 
     protected void logj(Object json) {
-        LogUtils.json(tag, GsonUtils.toJson(json));
+        LogUtils.json(tag, toJson(json));
     }
 
     protected void showProgress(@NonNull String msg) {

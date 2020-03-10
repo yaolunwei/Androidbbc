@@ -2,8 +2,9 @@ package com.bigoat.bbc.base;
 
 import androidx.lifecycle.ViewModel;
 import androidx.annotation.NonNull;
-import com.bigoat.bbc.utils.GsonUtils;
-import com.bigoat.bbc.utils.LogUtils;
+
+import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.LogUtils;
 
 /**
  * <pre>

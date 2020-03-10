@@ -5,8 +5,8 @@ import android.view.View;
 
 import com.bigoat.bbc.sample.databinding.MainActivityBinding;
 import com.bigoat.bbc.sample.my.MyActivity;
-import com.bigoat.bbc.utils.PermissionConstants;
-import com.bigoat.bbc.utils.PermissionUtils;
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.PermissionUtils;
 
 import java.util.List;
 

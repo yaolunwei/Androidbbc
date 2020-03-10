@@ -2,8 +2,9 @@ package com.bigoat.bbc.base;
 
 import android.app.Application;
 
-import com.bigoat.bbc.utils.SPUtils;
-import com.bigoat.bbc.utils.Utils;
+
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.Utils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

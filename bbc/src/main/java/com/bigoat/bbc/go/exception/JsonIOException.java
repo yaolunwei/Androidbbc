@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Square, Inc.
+ * Copyright 2016 jeasonlzy(廖子尧)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bigoat.bbc.http;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-import okhttp3.ResponseBody;
-
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+package com.bigoat.bbc.go.exception;
 
 /**
- * Treat the response body on methods returning {@link ResponseBody ResponseBody} as is,
- * i.e. without converting the body to {@code byte[]}.
+ * ================================================
+ * 作    者：jeasonlzy（廖子尧）Github地址：https://github.com/jeasonlzy
+ * 版    本：1.0
+ * 创建日期：16/8/28
+ * 描    述：
+ * 修订历史：
+ * ================================================
  */
-@Documented
-@Target(METHOD)
-@Retention(RUNTIME)
-public @interface Streaming {
+public class JsonIOException extends Exception {
+    private static final long serialVersionUID = -8641198158155821498L;
+
+    public JsonIOException(String detailMessage) {
+        super(detailMessage);
+    }
 }

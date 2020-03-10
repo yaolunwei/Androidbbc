@@ -4,7 +4,7 @@ import androidx.databinding.ViewDataBinding;
 import android.text.TextUtils;
 
 import com.bigoat.bbc.base.BaseActivity;
-import com.bigoat.bbc.utils.ScreenUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 
 import cn.lecent.lib.tts.TTS;
 
