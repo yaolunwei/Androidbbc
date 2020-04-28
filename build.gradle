@@ -17,11 +17,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'https://jitpack.io' }
         google()
         jcenter()
-        maven {
-            url 'http://maven.jxwd.me/nexus/content/repositories/android-releases/'
-        }
     }
 }
 

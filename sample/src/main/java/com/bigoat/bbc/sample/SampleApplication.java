@@ -2,8 +2,6 @@ package com.bigoat.bbc.sample;
 
 import com.bigoat.bbc.base.BaseApplication;
 
-import cn.lecent.lib.tts.TTS;
-
 /**
  * <pre>
  *     author : ylw
@@ -17,7 +15,6 @@ public class SampleApplication extends BaseApplication {
     @Override
     public void myCreate() {
         // 创建语音引擎
-        TTS.onCreate(this);
     }
 
     @Override
@@ -29,6 +26,5 @@ public class SampleApplication extends BaseApplication {
     public void onLowMemory() {
         super.onLowMemory();
         // 内存低时，释放语音引擎
-        TTS.onDestroy();
     }
 }

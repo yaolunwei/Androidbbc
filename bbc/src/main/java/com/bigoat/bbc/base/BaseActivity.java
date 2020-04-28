@@ -33,7 +33,7 @@ import static com.blankj.utilcode.util.GsonUtils.toJson;
  *     desc   : Activity基础
  * </pre>
  */
-public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends AppCompatActivity {
+public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends AppCompatActivity implements IToast, ILog {
     protected String tag;
 
     protected Binding bind;
@@ -193,22 +193,6 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
 
         intent.putExtras(bundle);
         startActivity(intent);
-    }
-
-    protected void logd(String msg) {
-        LogUtils.dTag(tag, msg);
-    }
-
-    protected void loge(String msg) {
-        LogUtils.eTag(tag, msg);
-    }
-
-    protected void logj(String json) {
-        LogUtils.json(tag, json);
-    }
-
-    protected void logj(Object json) {
-        LogUtils.json(tag, toJson(json));
     }
 
     protected void showProgress(@NonNull String msg) {

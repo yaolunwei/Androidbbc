@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.bigoat.bbc.sample.databinding.MainActivityBinding;
 import com.bigoat.bbc.sample.my.MyActivity;
+import com.bigoat.bbc.sample.toast.ToastActivity;
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
 
@@ -52,7 +53,7 @@ public class MainActivity extends MyActivity<MainActivityBinding, MainViewMode> 
         bind.btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PermissionUtils.launchAppDetailsSettings();
+                go(ToastActivity.class);
             }
         });
 

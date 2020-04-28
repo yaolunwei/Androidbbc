@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="vm" type="com.bigoat.bbc.sample.toast.ToastViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right|bottom"
+        android:layout_margin="@dimen/dp_10"
+        android:orientation="vertical">
+<!--        android:onClick='@{() -> vm.showToast("This is default toast.")}'-->
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ToastButton"
+            android:text="DEFAULT(默认)"
+            android:onClick='@{() -> vm.showToast("This is default msg.")}'
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ToastButton"
+            android:onClick='@{() -> vm.showToastInfo("This is info toast.")}'
+            android:text="INFO(消息)"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ToastButton"
+            android:onClick='@{() -> vm.showToastWarning("This is warning toast.")}'
+            android:text="WARNING(警告)"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ToastButton"
+            android:onClick='@{() -> vm.showToastError("This is error toast.")}'
+            android:text="ERROR(错误)"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ToastButton"
+            android:onClick='@{() -> vm.showToastSuccess("This is success toast.")}'
+            android:text="SUCCESS(成功)"/>
+
+    </LinearLayout>
+</layout>

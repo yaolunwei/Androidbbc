@@ -42,5 +42,5 @@ dependencies {
     implementation project(path: ':bbc')
 
     // 最后放第三方依赖，必须附带说明
-    implementation 'cn.lecent.lib:tts:1.2'
+//    implementation 'cn.lecent.lib:tts:1.2'
 }

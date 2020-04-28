@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import com.bigoat.bbc.base.BaseActivity;
 import com.blankj.utilcode.util.ScreenUtils;
 
-import cn.lecent.lib.tts.TTS;
 
 /**
  * <pre>
@@ -42,7 +41,6 @@ public abstract class MyActivity<Binding extends ViewDataBinding, ViewModel exte
      */
     protected void speak(String content) {
         if (!TextUtils.isEmpty(content)) {
-            TTS.speak(content);
         }
     }
 }

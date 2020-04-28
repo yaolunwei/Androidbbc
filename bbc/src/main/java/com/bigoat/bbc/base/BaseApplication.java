@@ -1,8 +1,10 @@
 package com.bigoat.bbc.base;
 
 import android.app.Application;
+import android.view.Gravity;
 
 
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.Utils;
 
@@ -42,7 +44,15 @@ public abstract class BaseApplication extends Application {
 
         sInstance = this;
 
+        // 初始化工具
         Utils.init(this);
+
+        // 配置Toast
+        IToast.getConfig().setGravity(Gravity.CENTER|Gravity.LEFT, 0, 0);
+
+        // 配置Log
+        ILog.getConfig().setStackOffset(3);
+
 
         myCreate();
 

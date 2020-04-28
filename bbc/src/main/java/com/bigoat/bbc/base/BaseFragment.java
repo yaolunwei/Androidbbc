@@ -13,8 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.blankj.utilcode.util.GsonUtils;
-import com.blankj.utilcode.util.LogUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -27,7 +25,7 @@ import java.lang.reflect.Type;
  *     desc   : Fragment基础
  * </pre>
  */
-public abstract class BaseFragment<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends Fragment {
+public abstract class BaseFragment<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends Fragment implements IToast, ILog {
     protected String tag;
 
     protected Binding bind;
@@ -105,7 +103,7 @@ public abstract class BaseFragment<Binding extends ViewDataBinding, ViewModel ex
 
         bind.setLifecycleOwner(this);
 
-        vm.progressData.observe(this, s -> {
+        vm.progressData.observe(getViewLifecycleOwner(), s -> {
             if (s == null) {
                 hideProgress();
             } else {
@@ -168,22 +166,6 @@ public abstract class BaseFragment<Binding extends ViewDataBinding, ViewModel ex
 
     protected void go(Class activity, Object... args) {
         act.go(activity, args);
-    }
-
-    protected void logd(String msg) {
-        LogUtils.dTag(tag, msg);
-    }
-
-    protected void loge(String msg) {
-        LogUtils.eTag(tag, msg);
-    }
-
-    protected void logj(String json) {
-        LogUtils.json(tag, json);
-    }
-
-    protected void logj(Object json) {
-        LogUtils.json(tag, GsonUtils.toJson(json));
     }
 
     protected void showProgress(@NonNull String msg) {

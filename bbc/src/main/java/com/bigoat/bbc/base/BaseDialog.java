@@ -21,7 +21,7 @@ import com.blankj.utilcode.util.LogUtils;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public abstract class BaseDialog<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends DialogFragment {
+public abstract class BaseDialog<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends DialogFragment implements IToast, ILog {
     protected String tag;
 
     protected Binding bind;
@@ -162,22 +162,6 @@ public abstract class BaseDialog<Binding extends ViewDataBinding, ViewModel exte
 
     protected void go(Class activity, Object... args) {
         act.go(activity, args);
-    }
-
-    protected void logd(String msg) {
-        LogUtils.dTag(tag, msg);
-    }
-
-    protected void loge(String msg) {
-        LogUtils.eTag(tag, msg);
-    }
-
-    protected void logj(String json) {
-        LogUtils.json(tag, json);
-    }
-
-    protected void logj(Object json) {
-        LogUtils.json(tag, GsonUtils.toJson(json));
     }
 
     protected void showProgress(@NonNull String msg) {
