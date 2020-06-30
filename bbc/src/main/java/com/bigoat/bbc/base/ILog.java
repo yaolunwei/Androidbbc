@@ -1,13 +1,12 @@
 package com.bigoat.bbc.base;
 
 import com.blankj.utilcode.util.LogUtils;
-
 /**
  * <pre>
  *     author : ylw
  *     e-mail : bigoatsm@gmail.com
  *     time   : 2020-04-28
- *     desc   : 日志接口
+ *     desc   : 日志工具
  * </pre>
  */
 public interface ILog {
@@ -16,6 +15,7 @@ public interface ILog {
         return LogUtils.getConfig();
     }
 
+    // 动态调用
     default void logd(Object... msg) {
         LogUtils.dTag(getClass().getSimpleName(), msg);
     }
@@ -34,5 +34,26 @@ public interface ILog {
 
     default void logx(String xml) {
         LogUtils.xml(getClass().getSimpleName(), xml);
+    }
+
+    // 静态调用
+    static void d(Object... msg) {
+        LogUtils.d(msg);
+    }
+
+    static void e(Object... msg) {
+        LogUtils.e(msg);
+    }
+
+    static void f(Object... msg) {
+        LogUtils.file(msg);
+    }
+
+    static void j(Object json) {
+        LogUtils.json(json);
+    }
+
+    static void x(String xml) {
+        LogUtils.xml(xml);
     }
 }
