@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BaseRecyclerView">
+        <attr format="reference" name="bbc_item_layout"/>
+    </declare-styleable>
+
+    <declare-styleable name="CurrentTimeView">
+        <attr name="ctvFormat" format="string"/>
+        <attr name="ctvUpdateInterval" format="integer" />
+    </declare-styleable>
+</resources>
