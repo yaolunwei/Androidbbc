@@ -39,8 +39,18 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // 中间放核心依赖,例如框架
-    implementation project(path: ':bbc')
+    api project(path: ':bbc')
 
     // 最后放第三方依赖，必须附带说明
 //    implementation 'cn.lecent.lib:tts:1.2'
+
+    api 'com.zzhoujay.richtext:richtext:3.0.8'
+
+    // https://github.com/getActivity/XToast
+    implementation 'com.hjq:xtoast:5.5'
+
+
+    // XUI: http://xuexiangjys.club/XUI/
+    api 'com.github.xuexiangjys:XUI:1.1.3'
+
 }

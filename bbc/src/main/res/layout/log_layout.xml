@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600dp"
+    android:layout_height="500dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_violet"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/sp_18"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="日志"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/operateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/packageFilter"
+            android:textColor="@color/white"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/logLevel"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/logLevel" />
+
+        <EditText
+            android:hint="关键字过滤"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/cleanLog"
+            android:text="清除"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/logScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/operateLayout">
+        <TextView
+            android:id="@+id/log"
+            android:text="log\n"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+
+    <View
+        android:id="@+id/zoom"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/antique_white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

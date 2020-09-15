@@ -1,10 +1,15 @@
 package com.bigoat.bbc.sample.my;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.databinding.ViewDataBinding;
 import android.text.TextUtils;
 
 import com.bigoat.bbc.base.BaseActivity;
+import com.bigoat.bbc.base.BaseViewModel;
+import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ScreenUtils;
+
+import java.util.Objects;
 
 
 /**
@@ -18,7 +23,7 @@ import com.blankj.utilcode.util.ScreenUtils;
  *              3. TTS(文本转语音)
  * </pre>
  */
-public abstract class MyActivity<Binding extends ViewDataBinding, ViewModel extends MyViewModel> extends BaseActivity<Binding, ViewModel> {
+public abstract class MyActivity<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends BaseActivity<Binding, ViewModel> {
     @Override
     protected void onResume() {
         super.onResume();
@@ -26,21 +31,17 @@ public abstract class MyActivity<Binding extends ViewDataBinding, ViewModel exte
         ScreenUtils.setFullScreen(this);
     }
 
-    protected void saveUser(String name, String password) {
-        // TODO 保存用户
-    }
-
-    protected void removeUser(String name) {
-        // TODO 移除用户
-    }
-
-    /**
-     * 文本转语音
-     *
-     * @param content 内容
-     */
-    protected void speak(String content) {
-        if (!TextUtils.isEmpty(content)) {
+    protected void setTitle(String title) {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(title);
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

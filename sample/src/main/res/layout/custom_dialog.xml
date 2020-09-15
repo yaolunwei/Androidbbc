@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="vm" type="com.bigoat.bbc.sample.dialog.DialogViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/context"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue"
+            android:textSize="@dimen/sp_18"
+            android:gravity="center"
+            tools:text="title"
+            app:shapeCornerRadius="@{10}"
+            android:text="@{vm.msgData}"/>
+
+    </LinearLayout>
+</layout>
+

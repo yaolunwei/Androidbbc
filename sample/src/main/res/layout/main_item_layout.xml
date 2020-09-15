@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="item" type="com.bigoat.bbc.sample.main.Main" />
+    </data>
+
+    <LinearLayout
+        android:layout_margin="@dimen/dp_8"
+        android:background="@color/dark_grey"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/sp_18"
+            android:padding="@dimen/dp_8"
+            android:text="@{item.name}"/>
+    </LinearLayout>
+
+</layout>

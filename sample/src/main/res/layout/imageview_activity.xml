@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="vm" type="com.bigoat.bbc.sample.view.ViewViewModel" />
+        <import type="com.bigoat.bbc.sample.R"/>
+        <import type="com.bigoat.bbc.view.ImageViewAdapter.Transform"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_32"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="占位符"
+                android:textSize="@dimen/sp_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="加载中:app:imageHolder=@{@drawable/load3}"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:imageSrc='@{"http://e.hiphotos.baidu.com/zhidao/pic/item/38dbb6fd5266d016bdeb8e0a932bd40735fa3525.jpg"}'
+                app:imageHolder="@{@drawable/load3}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="加载失败:app:imageError='@{@drawable/error1}'"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                app:imageSrc='@{""}'
+                app:imageError='@{@drawable/error1}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="失败组合:app:imageHolder=@{@drawable/load1 \n app:imageError=@{@drawable/error1}"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                app:imageSrc='@{"https://www.baidu.com/a.png"}'
+                app:imageHolder="@{@drawable/load1}"
+                app:imageError='@{@drawable/error3}'/>
+
+            <!-- ==================== -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_56"
+                android:gravity="center"
+                android:text="加载方式"
+                android:textSize="@dimen/sp_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="加载Bitmap:app:imageSrc='@{vm.bitmap}'"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                app:imageSrc='@{vm.bitmap}'/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="加载Drawable:app:imageSrc='@{vm.drawable}'"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:imageSrc='@{vm.drawable}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="加载网络图片:app:imageSrc='@{vm.imgUrl}'"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageSrc='@{vm.imgUrl}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="加载资源文件:app:imageSrc='@{@drawable/img1}'"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageSrc='@{@drawable/img1}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="加载资源文件:app:imageSrc='@{R.drawable.img2}'"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/red"
+                android:padding="2dp"
+                app:imageSrc='@{R.drawable.img2}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="加载Gif:\napp:imageSrc='@{https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1674760321,2881373110&amp;fm=26&amp;gp=0.gif}'"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageSrc='@{"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1674760321,2881373110&amp;fm=26&amp;gp=0.jpg"}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="加载视频:\napp:imageSrc='@{https://lc-gold-cdn.xitu.io/ccdae5ff46c8327e.mp4}'"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageSrc='@{"https://lc-gold-cdn.xitu.io/ccdae5ff46c8327e.mp4"}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:onClick="@{() -> vm.dynamicUpdateImg()}"
+                android:text="点我动态更新图片:app:imageSrc='@{vm.imgUrlsData}'"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:scaleType="fitXY"
+                android:onClick="@{() -> vm.dynamicUpdateImg()}"
+                app:imageSrc='@{vm.dynamicImgData}'/>
+
+
+            <!-- ==================== -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_56"
+                android:gravity="center"
+                android:text="变换"
+                android:textSize="@dimen/sp_24"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageTransform="@{Transform.CropTransformation}"
+                app:imageSrc='@{R.drawable.img2}'/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageTransform="@{Transform.CropCircleTransformation}"
+                app:imageSrc='@{R.drawable.img2}'/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageTransform="@{Transform.RoundedCornersTransformation}"
+                app:imageSrc='@{R.drawable.img2}'/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

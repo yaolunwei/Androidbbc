@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions;
 /**
  * 图片适配器
  */
+@Deprecated
 public class ImgAdaper {
     private static String baseUrl = "";
 

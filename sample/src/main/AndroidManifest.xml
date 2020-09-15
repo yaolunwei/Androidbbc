@@ -3,24 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bigoat.bbc.sample">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:name=".SampleApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".permission.PermissionActivity"></activity>
-        <activity android:name=".MainActivity">
+<!--        <activity android:name=".go.GoActivity"></activity>-->
+        <activity android:name=".permission.PermissionActivity" />
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".toast.ToastActivity" />
+        <activity android:name=".toast.ToastActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".autoArg.JumpTwoActivity" />
+        <activity android:name=".log.LogActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".go.Go2Activity" />
+        <activity android:name=".go.Go3Activity" />
+        <activity android:name=".go.Go4Activity" />
+        <activity android:name=".go.Go5Activity" />
+        <activity android:name=".go.GoActivity" />
+        <activity android:name=".baselivedata.BaseLiveDataActivity" />
+        <activity android:name=".autoArg.JumpActivity" />
+        <activity android:name=".list.ListActivity" />
+        <activity android:name=".view.ViewActivity" />
+        <activity android:name=".view.image.ImageViewActivity" />
+        <activity android:name=".dialog.DialogActivity" />
     </application>
 
 </manifest>

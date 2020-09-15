@@ -17,6 +17,7 @@ import com.blankj.utilcode.util.LogUtils;
  *     desc   : 基础ViewModel进行逻辑处理
  * </pre>
  */
+@Deprecated
 public class BaseContextViewModel extends AndroidViewModel {
     private String tag;
 

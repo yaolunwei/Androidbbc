@@ -164,6 +164,7 @@ public abstract class BaseFragment<Binding extends ViewDataBinding, ViewModel ex
         act.go();
     }
 
+    @Deprecated
     protected void go(Class activity, Object... args) {
         act.go(activity, args);
     }

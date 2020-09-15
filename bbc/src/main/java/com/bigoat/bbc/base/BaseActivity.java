@@ -1,6 +1,7 @@
 package com.bigoat.bbc.base;
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.content.Intent;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 
 import com.bigoat.bbc.R;
 import com.blankj.utilcode.util.GsonUtils;
-import com.blankj.utilcode.util.LogUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -34,15 +34,20 @@ import static com.blankj.utilcode.util.GsonUtils.toJson;
  * </pre>
  */
 public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel extends BaseViewModel> extends AppCompatActivity implements IToast, ILog {
+    public static final int REQUEST_CODE = -19920115;
+
     protected String tag;
+
+    // 跳转携带
+    private Bundle bundle;
 
     protected Binding bind;
     protected ViewModel vm;
 
+    // 进度
     private View progressView;
 
     protected Intent intent;
-    private Bundle bundle = new Bundle();
 
     /**
      * 布局文件
@@ -59,6 +64,12 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
      */
     protected abstract void myCreate(@NonNull Binding bind, @NonNull ViewModel vm);
 
+    @Deprecated
+    protected void myStart() {
+        super.onStart();
+    }
+
+
     /**
      * 创建ViewMode
      *
@@ -72,13 +83,13 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
 
             if (paraType.getActualTypeArguments().length == 2) {
                 Class clazz = (Class<ViewModel>) paraType.getActualTypeArguments()[1];
-                return (ViewModel) ViewModelProviders.of(this).get(clazz);
+                return (ViewModel) new ViewModelProvider(this).get(clazz);
             } else {
                 throw new RuntimeException("请配置正确的泛型参数, eg: MyActivity extends BaseActivity<?, ?>");
             }
 
         } else {
-            BaseViewModel baseViewModel = ViewModelProviders.of(this).get(BaseViewModel.class);
+            BaseViewModel baseViewModel = new ViewModelProvider(this).get(BaseViewModel.class);
             return (ViewModel)baseViewModel;
         }
     }
@@ -86,8 +97,9 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         tag = getClass().getSimpleName();
+
+        bundle = new Bundle();
 
         bind = DataBindingUtil.setContentView(this, myView());
 
@@ -102,6 +114,12 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
                 hideProgress();
             } else {
                 showProgress(s);
+            }
+        });
+
+        vm.finishResultCodeData.observe(this, integer -> {
+            if (integer!=null) {
+                finish(integer);
             }
         });
 
@@ -141,10 +159,18 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
     }
 
     public BaseActivity with(@NonNull String key, @NonNull Object value) {
-        if (value instanceof String) {
+        if (value instanceof Byte) {
+            bundle.putByte(key, (Byte) value);
+        } else if (value instanceof Short) {
+            bundle.putShort(key, (Short) value);
+        } else if (value instanceof Character) {
+            bundle.putChar(key, (Character) value);
+        } else if (value instanceof String) {
             bundle.putString(key, (String) value);
         } else if (value instanceof Boolean) {
             bundle.putBoolean(key, (Boolean) value);
+        } else if (value instanceof Long) {
+            bundle.putLong(key, (Long) value);
         } else if (value instanceof Integer) {
             bundle.putInt(key, (Integer) value);
         } else if (value instanceof Float) {
@@ -158,20 +184,38 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
         return this;
     }
 
-    public BaseActivity startActivity(Class activity) {
+    public BaseActivity startActivity(@NonNull Class activity) {
         intent = new Intent(this, activity);
         return this;
     }
 
     public void go() {
+        go(REQUEST_CODE);
+    }
+
+    public void go(int requestCode) {
         if (intent == null) {
             throw new RuntimeException("请先设置跳转Activity eg：startActivity(Class activity)");
         }
 
         intent.putExtras(bundle);
-        startActivity(intent);
+        if (requestCode == REQUEST_CODE) {
+            startActivity(intent);
+        } else {
+            startActivityForResult(intent, requestCode);
+        }
     }
 
+    protected void go(Class activity) {
+        go(activity, REQUEST_CODE);
+    }
+
+    protected void go(@NonNull Class activity, int requestCode) {
+        intent = new Intent(this, activity);
+        go(requestCode);
+    }
+
+    @Deprecated
     protected void go(Class activity, Object... args) {
         intent = new Intent(this, activity);
         for (int i = 0; i < args.length; i++) {
@@ -193,6 +237,15 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
 
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        myGoResult(requestCode, resultCode, data);
+    }
+    // 跳转回调
+    protected void myGoResult(int requestCode, int resultCode, @Nullable Intent data) {
     }
 
     protected void showProgress(@NonNull String msg) {
@@ -225,33 +278,72 @@ public abstract class BaseActivity<Binding extends ViewDataBinding, ViewModel ex
         }
     }
 
+    // 参数注入
     private void injectBundle(Object o, Bundle bundle) {
-        try {
-            Field[] fields = o.getClass().getDeclaredFields();
-            for (Field field : fields) {
-                boolean annotationPresent = field.isAnnotationPresent(AutoArg.class);
-                if (annotationPresent) {
+        Field[] fields = o.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                boolean hasAutoArg = field.isAnnotationPresent(AutoArg.class);
+                if (hasAutoArg) {
                     field.setAccessible(true);
-
                     Object value = bundle.get(field.getName());
+                    if (value == null) continue;
 
-                    if (value instanceof String) {
-                        String str = (String) value;
-                        try {
-                            Object obj = GsonUtils.fromJson(str, field.getType());
-                            field.set(o, obj);
-                        } catch (Exception e) {
-                            field.set(o, str);
-                        }
-
-                    } else {
+                    Class type = field.getType();
+                    if (isPrimitive(type)) {
                         field.set(o, value);
+                    } else {
+                        logd("other type: " + type.getName());
+                        try {
+                            if (value instanceof String) {
+                                String stringValue = (String) value;
+                                field.set(o, GsonUtils.fromJson(stringValue, type));
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     }
+
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            throw new RuntimeException("参数注入失败: " + e.getMessage());
+
+
         }
+
     }
 
+    // 是否基本类型包含包装类型
+    private boolean isPrimitive(Class c) {
+        return c.isPrimitive()
+                || c == Byte.class
+                || c == Short.class
+                || c == Integer.class
+                || c == Long.class
+                || c == Float.class
+                || c == Double.class
+                || c == Character.class
+                || c == String.class
+                || c == Boolean.class;
+    }
+
+    public void finish(int resultCode, Intent intent) {
+        if (intent == null) {
+            setResult(resultCode, new Intent());
+        } else {
+            setResult(resultCode, intent);
+        }
+
+        finish();
+    }
+
+    public void finish(int resultCode) {
+        finish(resultCode, null);
+    }
+
+    // xml中finish
+    public void finish(View view) {
+        finish();
+    }
 }

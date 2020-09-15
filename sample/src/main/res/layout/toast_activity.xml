@@ -10,46 +10,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="right|bottom"
-        android:layout_margin="@dimen/dp_10"
-        android:orientation="vertical">
-<!--        android:onClick='@{() -> vm.showToast("This is default toast.")}'-->
+        android:layout_margin="@dimen/dp_8"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:onClick='@{() -> vm.showToast("This is default toast.")}'>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/ToastButton"
-            android:text="DEFAULT(默认)"
+            android:text="showToast(默认)"
             android:onClick='@{() -> vm.showToast("This is default msg.")}'
             tools:ignore="HardcodedText" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/ToastButton"
             android:onClick='@{() -> vm.showToastInfo("This is info toast.")}'
-            android:text="INFO(消息)"/>
+            android:text="showToastInfo(信息)"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/ToastButton"
-            android:onClick='@{() -> vm.showToastWarning("This is warning toast.")}'
-            android:text="WARNING(警告)"/>
+            android:onClick='@{() -> vm.showToastWarn("This is warning toast.")}'
+            android:text="showToastWarn(警告)"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/ToastButton"
             android:onClick='@{() -> vm.showToastError("This is error toast.")}'
-            android:text="ERROR(错误)"/>
+            android:text="showToastError(错误)"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/ToastButton"
             android:onClick='@{() -> vm.showToastSuccess("This is success toast.")}'
-            android:text="SUCCESS(成功)"/>
+            android:text="showToastSuccess(成功)"/>
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:text="自定义Toast 覆盖方法  @Override public void toast(TYPE type, String msg) { }"
+            android:onClick="@{() -> vm.switchCustomToast()}"/>
 
     </LinearLayout>
 </layout>

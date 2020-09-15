@@ -170,11 +170,11 @@
     <color name="transparent_100">#00FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
 
-    <!--utils toasty-->
-    <color name="toasty_default_text">#FFFFFF</color>
-    <color name="toasty_error">#D50000</color>
-    <color name="toasty_info">#3F51B5</color>
-    <color name="toasty_success">#388E3C</color>
-    <color name="toasty_warning">#FFA900</color>
-    <color name="toasty_normal">#353A3E</color>
+    <!-- IToast -->
+    <color name="itoast_default_text">#FFFFFF</color>
+    <color name="itoast_error">#D50000</color>
+    <color name="itoast_info">#3F51B5</color>
+    <color name="itoast_success">#388E3C</color>
+    <color name="itoast_warning">#FFA900</color>
+    <color name="itoast_normal">#353A3E</color>
 </resources>

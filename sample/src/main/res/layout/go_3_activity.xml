@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vm"
+            type="com.bigoat.bbc.sample.go.GoViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".go.GoActivity">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="正常finish"
+            android:onClick="finish"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:text="返回结果finish"
+            android:onClick="@{() -> vm.finish(3)}"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/resultGo"
+            android:text="有返回结果跳转Go4Activity(requestCode=3)"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/go"
+            android:text="无返回结果跳转Go4Activity"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+
+    </LinearLayout>
+</layout>
+

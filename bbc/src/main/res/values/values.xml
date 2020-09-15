@@ -25,4 +25,13 @@
     <dimen name="sp_56">56sp</dimen>
     <dimen name="sp_64">64sp</dimen>
     <dimen name="sp_72">72sp</dimen>
+
+    <array name="logLevel">
+        <item>Verbose</item>
+        <item>Debug</item>
+        <item>Info</item>
+        <item>Warn</item>
+        <item>Error</item>
+        <item>Assert</item>
+    </array>
 </resources>

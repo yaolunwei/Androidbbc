@@ -1,5 +1,8 @@
 package com.bigoat.bbc.sample;
 
+import com.bigoat.bbc.sample.autoArg.Persion;
+import com.bigoat.bbc.sample.permission.PermissionActivity;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,6 +15,18 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        System.out.println("String: " + Integer.class.isPrimitive());
+        System.out.println("String: " + int.class.isPrimitive());
+        System.out.println("String: " + Float.class.isPrimitive());
+        System.out.println("String: " + float.class.isPrimitive());
+        System.out.println("String: " + Double.class.isPrimitive());
+        boolean b;
+        try {
+            b = ((Class) Integer.class.getField("TYPE").get(null)).isPrimitive();
+        } catch (Exception e) {
+            b = false;
+        }
+
+        System.out.println("b: " + b);
     }
 }

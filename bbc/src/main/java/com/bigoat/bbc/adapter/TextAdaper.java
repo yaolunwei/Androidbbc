@@ -13,6 +13,7 @@ import android.widget.TextView;
 /**
  * 图片适配器
  */
+@Deprecated
 public class TextAdaper {
     @BindingAdapter("textHtml")
     public static void htmlText(TextView view, String htmlText) {

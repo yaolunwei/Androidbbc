@@ -3,9 +3,6 @@ package com.bigoat.bbc.base;
 import androidx.lifecycle.ViewModel;
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.util.GsonUtils;
-import com.blankj.utilcode.util.LogUtils;
-
 /**
  * <pre>
  *     author : ylw
@@ -14,7 +11,7 @@ import com.blankj.utilcode.util.LogUtils;
  *     desc   : 基础ViewModel进行逻辑处理
  * </pre>
  */
-public class BaseViewModel extends ViewModel implements IToast, ILog {
+public abstract class BaseViewModel extends ViewModel implements IToast, ILog {
 
     private String tag;
 
@@ -22,10 +19,12 @@ public class BaseViewModel extends ViewModel implements IToast, ILog {
 
     protected BaseLiveData<String> progressData = new BaseLiveData<>();
 
+    protected BaseLiveData<Integer> finishResultCodeData = new BaseLiveData<>();
+
     /**
      * 监听Activity 和 Fragment 生命周期
      */
-    public void create() {
+    protected void create() {
         if (!isCreate) {
             tag = getClass().getSimpleName();
             onCreate();
@@ -33,17 +32,17 @@ public class BaseViewModel extends ViewModel implements IToast, ILog {
         }
     }
 
-    public void onCreate() {}
+    protected void onCreate() {}
 
-    public void onStart() {}
+    protected void onStart() {}
 
-    public void onResume() {}
+    protected void onResume() {}
 
-    public void onPause() {}
+    protected void onPause() {}
 
-    public void onStop() {}
+    protected void onStop() {}
 
-    public void onDestroy() {}
+    protected void onDestroy() {}
 
     protected void showProgress(@NonNull String msg) {
         progressData.value(msg);
@@ -56,4 +55,13 @@ public class BaseViewModel extends ViewModel implements IToast, ILog {
     protected void hideProgress() {
         progressData.value(null);
     }
+
+    public void finish(int resultCode) {
+        finishResultCodeData.setValue(resultCode);
+    }
+
+    public void finish() {
+        finishResultCodeData.setValue(-1);
+    }
+
 }

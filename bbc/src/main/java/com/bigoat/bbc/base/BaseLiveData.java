@@ -1,5 +1,6 @@
 package com.bigoat.bbc.base;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 /**
@@ -12,6 +13,15 @@ import androidx.lifecycle.MutableLiveData;
  */
 public class BaseLiveData<T> extends MutableLiveData<T> {
 
+    public BaseLiveData() {
+        super();
+    }
+
+    public BaseLiveData(T value) {
+        super(value);
+        this.onActive();
+    }
+
     public T value() {
         return super.getValue();
     }
@@ -23,6 +33,5 @@ public class BaseLiveData<T> extends MutableLiveData<T> {
             super.postValue(value);
         }
     }
-
 
 }

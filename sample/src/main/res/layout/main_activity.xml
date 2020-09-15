@@ -9,19 +9,11 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn1"
-            android:text="显示进度"
-            android:textSize="38sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btn2"
-            android:text="隐藏进度"
-            android:textSize="38sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <com.bigoat.bbc.base.BaseRecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 </layout>
+

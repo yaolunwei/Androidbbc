@@ -51,3 +51,5 @@ ILog.x("<xml><title>我还能输出xml格式的日志</title><body>是的就是�
 
 ### RoadMap
 - 屏幕上显示日志
+- 点对点网络打印
+

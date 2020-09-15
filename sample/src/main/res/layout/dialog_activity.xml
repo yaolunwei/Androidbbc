@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="vm" type="com.bigoat.bbc.sample.dialog.DialogViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp_8"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:text="正常" />
+
+        <Button
+            android:id="@+id/fullScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:padding="@dimen/dp_8"
+            android:text="全屏Dialog,setFullScreen(true)" />
+
+        <Button
+            android:id="@+id/bottomDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:padding="@dimen/dp_8"
+            android:text="底部Dialog(无阴影),setBottomDialog(200, false)" />
+
+        <Button
+            android:id="@+id/bottomDialogShadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:padding="@dimen/dp_8"
+            android:text="底部Dialog(有阴影),setBottomDialog(200, true)" />
+
+        <Button
+            android:id="@+id/fixedWidthAndHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:padding="@dimen/dp_8"
+            android:text="固定宽高300x300,setWidthAndHeight(300, 300)" />
+
+        <Button
+            android:id="@+id/proportionalWidthAndHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:padding="@dimen/dp_8"
+            android:text="比例宽高50%,50%,setWidthAndHeightPercentage(0.5f,0.5f)" />
+
+        <Button
+            android:id="@+id/showPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:padding="@dimen/dp_8"
+            android:text="显示位置左下偏移(100,100),setGravity(Gravity.BOTTOM|Gravity.START, 100,100)" />
+
+        <Button
+            android:id="@+id/showPositionByView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:padding="@dimen/dp_8"
+            android:text="通过View显示位置,setGravity(bind.fullScreen, 10,10)" />
+
+    </LinearLayout>
+</layout>

@@ -4,9 +4,9 @@ import android.app.Application;
 import android.view.Gravity;
 
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.Utils;
+import com.lzy.okgo.OkGo;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -47,12 +47,12 @@ public abstract class BaseApplication extends Application {
         // 初始化工具
         Utils.init(this);
 
-        // 配置Toast
-        IToast.getConfig().setGravity(Gravity.CENTER|Gravity.LEFT, 0, 0);
+        // 初始化网络
+        OkGo.getInstance().init(this);
 
-        // 配置Log
-        ILog.getConfig().setStackOffset(3);
-
+        // 初始化配置
+        ILog.getConfig().setStackOffset(2);
+        IToast.getConfig().setGravity(Gravity.BOTTOM, 0, 30);
 
         myCreate();
 

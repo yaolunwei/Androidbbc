@@ -1,1 +1,1 @@
-include ':sample', ':bbc'
+include ':sample', ':bbc', ':template'

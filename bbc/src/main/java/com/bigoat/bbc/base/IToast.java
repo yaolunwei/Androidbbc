@@ -1,5 +1,7 @@
 package com.bigoat.bbc.base;
 
+import android.graphics.Color;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -15,7 +17,9 @@ import com.blankj.utilcode.util.ToastUtils;
  * </pre>
  */
 public interface IToast {
-
+    enum TYPE {
+        NORMAL(), INFO, WARN, ERROR, SUCCESS
+    }
     class Config {
         static Config config = new Config();
 
@@ -48,35 +52,72 @@ public interface IToast {
             ToastUtils.setMsgTextSize(textSize);
             return this;
         }
-
     }
 
     static Config getConfig() {
         return Config.config;
     }
 
-    default void showToast(@NonNull String msg) {
+    default void toast(TYPE type, String msg) {
+        ToastUtils.setBgColor(Color.parseColor("#353A3E"));
+        ToastUtils.setMsgColor(Color.WHITE);
         ToastUtils.showShort(msg);
+    }
+
+    // 动态调用
+    default void showToast(@NonNull String msg) {
+        toast(TYPE.NORMAL, msg);
     }
 
     @Deprecated
     default void showToastNormal(@NonNull String msg) {
-        ToastUtils.showShort(msg);
+        toast(TYPE.NORMAL, msg);
     }
 
     default void showToastInfo(@NonNull String msg) {
-        ToastUtils.showShort(msg);
+        toast(TYPE.INFO, msg);
     }
 
-    default void showToastWarning(@NonNull String msg) {
-        ToastUtils.showShort(msg);
+    default void showToastWarn(@NonNull String msg) {
+        toast(TYPE.WARN, msg);
     }
 
     default void showToastError(@NonNull String msg) {
-        ToastUtils.showShort(msg);
+        toast(TYPE.ERROR, msg);
     }
 
     default void showToastSuccess(@NonNull String msg) {
+        toast(TYPE.SUCCESS, msg);
+    }
+
+    // 静态调用
+    static void show(@NonNull String msg) {
+        staticToast(TYPE.NORMAL, msg);    }
+
+    @Deprecated
+    static void showNormal(@NonNull String msg) {
+        staticToast(TYPE.NORMAL, msg);
+    }
+
+    static void showInfo(@NonNull String msg) {
+        staticToast(TYPE.INFO, msg);
+    }
+
+    static void showWarn(@NonNull String msg) {
+        staticToast(TYPE.WARN, msg);
+    }
+
+    static void showError(@NonNull String msg) {
+        staticToast(TYPE.ERROR, msg);
+    }
+
+    static void showSuccess(@NonNull String msg) {
+        staticToast(TYPE.SUCCESS, msg);
+    }
+
+    static void staticToast(TYPE type, String msg) {
+        ToastUtils.setBgColor(Color.parseColor("#353A3E"));
+        ToastUtils.setMsgColor(Color.WHITE);
         ToastUtils.showShort(msg);
     }
 }

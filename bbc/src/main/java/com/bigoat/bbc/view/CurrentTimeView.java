@@ -2,6 +2,7 @@ package com.bigoat.bbc.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
@@ -23,7 +24,7 @@ import java.util.Locale;
  */
 public class CurrentTimeView extends AppCompatTextView {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 aa E HH:mm:ss", Locale.CHINESE);
-    private long updateInterval = 1000;
+    private long updateInterval = 1;
     private Runnable runnable = new Runnable() {
         Date d = new Date();
         @Override
@@ -101,6 +102,6 @@ public class CurrentTimeView extends AppCompatTextView {
     }
 
     private void updateDateTime() {
-        postDelayed(runnable, updateInterval);
+        postDelayed(runnable, updateInterval*1000);
     }
 }

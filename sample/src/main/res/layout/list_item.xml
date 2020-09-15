@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="item" type="com.bigoat.bbc.sample.list.Item" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:padding="@dimen/dp_32"
+        android:background="@color/dark_gray"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <com.xuexiang.xui.widget.imageview.RadiusImageView
+            android:clickable="true"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lecent_logo"
+            app:riv_border_color="@color/xui_config_color_gray_6"
+            app:riv_border_width="1px"
+            app:riv_is_circle="true"
+            app:riv_selected_border_color="@color/xui_config_color_gray_4"
+            app:riv_selected_border_width="1px"
+            app:riv_selected_mask_color="@color/xui_config_color_gray_8"/>
+        <TextView
+            android:text="@{`姓名：` + item.name}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:text="@{`性别：` + item.sex}"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:text="@{`年龄：` + item.age}"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+</layout>
+
