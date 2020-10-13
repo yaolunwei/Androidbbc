@@ -6,6 +6,7 @@ import android.app.Dialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -76,6 +77,7 @@ public abstract class BaseDialog<Binding extends ViewDataBinding, ViewModel exte
 
     protected boolean transparent = true;
 
+    private BaseActivity act;
 
     /**
      * 布局文件
@@ -162,6 +164,12 @@ public abstract class BaseDialog<Binding extends ViewDataBinding, ViewModel exte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tag = getClass().getSimpleName();
+
+        if (getActivity() instanceof BaseActivity) {
+            act = (BaseActivity) getActivity();
+        } else {
+            throw new RuntimeException(getClass().getSimpleName() + " 必须继承 BaseActivity");
+        }
 
         bind.setLifecycleOwner(this);
 
@@ -275,6 +283,25 @@ public abstract class BaseDialog<Binding extends ViewDataBinding, ViewModel exte
     public void onDestroy() {
         super.onDestroy();
         vm.onDestroy();
+    }
+
+    public BaseDialog with(@NonNull String key, @NonNull Object value) {
+        act.with(key, value);
+        return this;
+    }
+
+    public BaseDialog startActivity(Class activity) {
+        act.intent = new Intent(act, activity);
+        return this;
+    }
+
+    public void go() {
+        act.go();
+    }
+
+    @Deprecated
+    protected void go(Class activity, Object... args) {
+        act.go(activity, args);
     }
 
     public void show(FragmentManager manager) {
